@@ -25,10 +25,10 @@ async def command_start_handler(message: Message) -> None:
     user = message.from_user
 
     if (user_id != int(MY_ID)):
-        logger.info(f'User {user.username} sent \\start ')
+        logger.info(f'User @{user.username} ({user_id=}) sent \\start ')
         return
     
-    resp_message = f"Hello, Daniel! I'm your bot created with aiogram.\n{user_id}"
+    resp_message = f"Hello, Daniel! I'm your bot created with aiogram."
     await message.answer(resp_message)
 
 
