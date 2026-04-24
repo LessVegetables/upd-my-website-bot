@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 TOKEN = getenv("BOT_TOKEN")
+MY_ID = getenv("MY_USER_ID")
 
 dp = Dispatcher()
 
@@ -16,7 +17,13 @@ dp = Dispatcher()
 # Command handler
 @dp.message(Command("start"))
 async def command_start_handler(message: Message) -> None:
-    await message.answer("Hello! I'm a bot created with aiogram.")
+    user_id = message.from_user.id
+
+    if (user_id != int(MY_ID)):
+        return
+    
+    resp_message = f"Hello, Daniel! I'm your bot created with aiogram.\n{user_id}"
+    await message.answer(resp_message)
 
 
 # Run the bot
